@@ -81,6 +81,10 @@ class RemoteServers
         [4] 473695292
         */
 
+        if (!is_numeric($remoteServerStats[0])) {
+            throw new \Exception('Non numeric value for $remoteServerStats[0]. Whole payload: ' . json_encode($remoteServerStats));
+        }
+
         $memoryTotal = (int)($remoteServerStats[0] / 1024);
         $memoryUsed = $memoryTotal - (int)($remoteServerStats[1] / 1024);
         $cpu = (int) $remoteServerStats[2];
